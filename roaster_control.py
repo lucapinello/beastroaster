@@ -5,9 +5,12 @@ import argparse
 import sys
 import sqlite3
 from sqlite3 import Error
-import RPi.GPIO as GPIO           # import RPi.GPIO module
+
 import numpy as np
 import time
+
+from gpiozero import LED,PWMLED
+
 
 
 def create_connection(db_file):
@@ -203,25 +206,20 @@ The available commands are:
 
     def update_gpio(self):
 
-        GPIO.setmode(GPIO.BCM)
 
-        for p in self.FAN_PINS:
-            GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
-        GPIO.setup(self.PWM_PIN, GPIO.OUT)
+        fan_control=[]
+        for p in FAN_PINS:
+            fan_control.append(LED(p,initial_value=1))
 
+        heat_control=PWMLED(PWM_PIN,frequency=60)
 
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
             print (self.FAN_PINS[idx],int(bit))
-            time.sleep(0.1)
-            GPIO.output(self.FAN_PINS[idx],int(bit))
+            fan_control[idx].value=int(bit)
 
-        time.sleep(0.1)
-        pwm = GPIO.PWM(self.PWM_PIN,self.PWM_FQ )
-        pwm.start(self.heat_level)
-        pwm.ChangeDutyCycle(self.heat_level)
-        time.sleep(0.1)
+        heat_control.value=self.heat_level/100
 
 
     def set_fan(self):
