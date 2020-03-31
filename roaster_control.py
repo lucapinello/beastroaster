@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #Luca Pinello 2020
 
-from gpiozero import LED,PWMLED
+import pigpio
 import argparse
 import sys
 import sqlite3
@@ -15,16 +15,14 @@ def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60
 
     print('Updating heat:%d fan:%d' % (heat_level, fan_level))
 
-    heat_control=PWMLED(PWM_PIN)
-    heat_control.value=heat_level/100.0
+    pi.set_PWM_range(12, 100)
+    pi.set_PWM_dutycycle(12, heat_level)
 
     fan_control=[]
-    for p in FAN_PINS:
-        fan_control.append(LED(p,initial_value=1))
-
     for idx,bit in enumerate(list(np.binary_repr(15-fan_level,width=4))):
-        print (FAN_PINS[idx],int(bit))
-        fan_control[idx].value=int(bit)
+        print (,int(bit))
+        pi.write(FAN_PINS[idx], int(bit))
+
 
 
 
@@ -255,6 +253,12 @@ The available commands are:
 
 
 if __name__ == '__main__':
+
+    pi = pigpio.pi()
+
+    if not pi.connected:
+        exit()
+
     roaster=Roaster()
     update_gpio(roaster.heat_level, roaster.fan_level)
     roaster.conn.close()
