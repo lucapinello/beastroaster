@@ -209,22 +209,18 @@ The available commands are:
         print self.heat_level, self.fan_level
 
 
-        heat_control=PWMLED(self.PWM_PIN,frequency=60)
+        heat_control=PWMLED(self.PWM_PIN)
         heat_control.value=self.heat_level/100.0
 
+        '''
         fan_control=[]
         for p in self.FAN_PINS:
             fan_control.append(LED(p,initial_value=1))
 
-
-
-
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
             print (self.FAN_PINS[idx],int(bit))
             fan_control[idx].value=int(bit)
-
-
-
+        '''
 
     def set_fan(self):
         parser = argparse.ArgumentParser(
