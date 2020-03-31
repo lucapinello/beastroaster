@@ -206,8 +206,7 @@ The available commands are:
 
     def update_gpio(self):
 
-
-
+        print self.heat_level, self.fan_level
         fan_control=[]
         for p in self.FAN_PINS:
             fan_control.append(LED(p,initial_value=1))
@@ -219,7 +218,7 @@ The available commands are:
             print (self.FAN_PINS[idx],int(bit))
             fan_control[idx].value=int(bit)
 
-        heat_control.value=self.heat_level/100
+        heat_control.value=self.heat_level/100.0
 
 
     def set_fan(self):
@@ -242,7 +241,6 @@ The available commands are:
         print('New heat level %d' %args.new_heat_level)
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
-
         self.update_gpio()
 
 
