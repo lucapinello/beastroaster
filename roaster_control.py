@@ -170,7 +170,7 @@ The available commands are:
         GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
         self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
 
-	    self.FAN_PINS=FAN_PINS
+        self.FAN_PINS=FAN_PINS
 
         # create a database connection
         self.conn = create_connection(database_filename)
