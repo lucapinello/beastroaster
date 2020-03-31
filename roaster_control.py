@@ -162,11 +162,6 @@ The available commands are:
 
 ''')
 
-        #setting up the GPIO
-
-        mode=GPIO.getmode()
-        print (mode)
-
 
         GPIO.setmode(GPIO.BCM)
         for p in FAN_PINS:
@@ -175,8 +170,7 @@ The available commands are:
         GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
         self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
 
-        self.GPIO=GPIO
-	self.FAN_PINS=FAN_PINS
+	    self.FAN_PINS=FAN_PINS
 
         # create a database connection
         self.conn = create_connection(database_filename)
@@ -200,7 +194,7 @@ The available commands are:
             else:
                 _,self.name,self.heat_level,self.fan_level=roaster
 
-            self.pwm.start(self.heat_level)
+
 
         parser.add_argument('command', help='Subcommand to run')
         # parse_args defaults to [1:] for args, but you need to
@@ -225,7 +219,7 @@ The available commands are:
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
             print (self.FAN_PINS[idx],int(bit))
-            self.GPIO.output(self.FAN_PINS[idx],int(bit))
+            GPIO.output(self.FAN_PINS[idx],int(bit))
 
 
     def set_heat(self):
@@ -237,7 +231,7 @@ The available commands are:
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
 
-        #self.pwm.start(0)
+        self.pwm.start(args.new_heat_level)
         self.pwm.ChangeDutyCycle(args.new_heat_level)
 
 
@@ -253,8 +247,7 @@ The available commands are:
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
-        if self.GPIO.getmode() is not None:
-            self.GPIO.cleanup()
+        GPIO.cleanup()
 
 
 if __name__ == '__main__':
