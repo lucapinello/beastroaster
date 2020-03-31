@@ -7,6 +7,7 @@ import sqlite3
 from sqlite3 import Error
 import RPi.GPIO as GPIO           # import RPi.GPIO module
 import numpy as np
+import time
 
 
 def create_connection(db_file):
