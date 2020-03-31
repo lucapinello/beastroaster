@@ -170,7 +170,7 @@ The available commands are:
         if GPIO.getmode() is None:
             GPIO.setmode(GPIO.BCM)
             for p in FAN_PINS:
-                GPIO.setup(p, GPIO.OUT)
+                GPIO.setup(p, GPIO.OUT,inital = GPIO.HIGH)
 
             GPIO.setup(PWM_PIN, GPIO.OUT)
             self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
