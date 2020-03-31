@@ -163,8 +163,8 @@ The available commands are:
 ''')
 
         #setting up the GPIO
-        print GPIO.getmode()
-        if GPIO.getmode()==-1:
+
+        if GPIO.getmode() is None:
             GPIO.setmode(GPIO.BCM)
             for p in FAN_PINS:
                 GPIO.setup(p, GPIO.OUT)
@@ -249,7 +249,7 @@ The available commands are:
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
-        if self.GPIO.getmode()>-1:
+        if self.GPIO.getmode() is not None:
             self.GPIO.cleanup()
 
 
