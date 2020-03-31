@@ -163,14 +163,9 @@ The available commands are:
 ''')
 
 
-        GPIO.setmode(GPIO.BCM)
-        for p in FAN_PINS:
-            GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
-
-        GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
-        self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
-
         self.FAN_PINS=FAN_PINS
+        self.PWM_PIN=PWM_PIN
+        self.PWM_FQ=PWM_FQ
 
         # create a database connection
         self.conn = create_connection(database_filename)
@@ -207,6 +202,22 @@ The available commands are:
         # use dispatch pattern to invoke method with same name
         getattr(self, args.command)()
 
+    def update_gpio(self):
+
+        GPIO.setmode(GPIO.BCM)
+        for p in FAN_PINS:
+            GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
+
+        GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
+        pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
+
+        for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
+            print (self.FAN_PINS[idx],int(bit))
+            GPIO.output(self.FAN_PINS[idx],int(bit))
+
+        self.pwm.start(self.heat_level)
+        self.pwm.ChangeDutyCycle(self.heat_level)
+
 
     def set_fan(self):
         parser = argparse.ArgumentParser(
@@ -217,9 +228,7 @@ The available commands are:
         set_fan_level(self.conn,args.new_fan_level)
         self.fan_level=args.new_fan_level
 
-        for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
-            print (self.FAN_PINS[idx],int(bit))
-            GPIO.output(self.FAN_PINS[idx],int(bit))
+        self.update_gpio()
 
 
     def set_heat(self):
@@ -231,8 +240,7 @@ The available commands are:
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
 
-        self.pwm.start(args.new_heat_level)
-        self.pwm.ChangeDutyCycle(args.new_heat_level)
+        self.update_gpio()
 
 
     def get_status(self):
@@ -242,7 +250,8 @@ The available commands are:
 
     def cool(self):
     	parser = argparse.ArgumentParser(description='Cranking up fan to cool ')
-	cool(self.conn)
+        cool(self.conn)
+        self.update_gpio()
 
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
