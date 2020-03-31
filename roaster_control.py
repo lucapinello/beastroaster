@@ -163,14 +163,15 @@ The available commands are:
 ''')
 
         #setting up the GPIO
+        print (GPIO.getmode() )
 
         if GPIO.getmode() is None:
             GPIO.setmode(GPIO.BCM)
             for p in FAN_PINS:
                 GPIO.setup(p, GPIO.OUT)
 
-            GPIO.setup(PWM_PIN, GPIO.OUT)   # Declaring pin 21 as output pin
-            self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )    # Created a PWM object
+            GPIO.setup(PWM_PIN, GPIO.OUT)
+            self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
             self.pwm.start(0)
 
         self.GPIO=GPIO
