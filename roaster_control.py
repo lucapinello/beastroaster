@@ -209,10 +209,10 @@ The available commands are:
 
 
         fan_control=[]
-        for p in FAN_PINS:
+        for p in self.FAN_PINS:
             fan_control.append(LED(p,initial_value=1))
 
-        heat_control=PWMLED(PWM_PIN,frequency=60)
+        heat_control=PWMLED(self.PWM_PIN,frequency=60)
 
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
@@ -259,7 +259,9 @@ The available commands are:
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
-        GPIO.cleanup()
+        self.heat_level=0
+        self.fan_level=0
+        self.update_gpio()
 
 
 if __name__ == '__main__':
