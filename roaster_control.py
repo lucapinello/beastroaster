@@ -205,11 +205,11 @@ The available commands are:
     def update_gpio(self):
 
         GPIO.setmode(GPIO.BCM)
-        for p in FAN_PINS:
+        for p in self.FAN_PINS:
             GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
-        GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
-        pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
+        GPIO.setup(self.PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
+        pwm = GPIO.PWM(self.PWM_PIN,self.PWM_FQ )
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
             print (self.FAN_PINS[idx],int(bit))
