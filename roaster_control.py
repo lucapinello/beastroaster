@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Luca Pinello 2020
 
 import argparse
 import sys
@@ -147,9 +148,11 @@ class Roaster(object):
             usage='''roaster_control <command> [<args>]
 
 The available commands are:
+   get_status  print the status of the roaster (fan and heat)
    set_fan     change fan level, values allowed are in [0-15]
    set_heat    change heat level, values allowed are in [0-100]
-   stop stop fan and heat
+   cool        stop the heat and set the fan to maximum
+   stop        stop fan and heat and reset the GPIO
 ''')
 
         #setting up the GPIO
