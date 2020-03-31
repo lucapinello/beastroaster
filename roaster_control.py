@@ -172,7 +172,7 @@ The available commands are:
         for p in FAN_PINS:
             GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
-        GPIO.setup(PWM_PIN, GPIO.OUT)
+        GPIO.setup(PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
         self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
 
         self.GPIO=GPIO
