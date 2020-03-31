@@ -167,14 +167,13 @@ The available commands are:
         mode=GPIO.getmode()
         print (mode)
 
-        if GPIO.getmode() is None:
-            GPIO.setmode(GPIO.BCM)
-            for p in FAN_PINS:
-                GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
-            GPIO.setup(PWM_PIN, GPIO.OUT)
-            self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
-            self.pwm.start(0)
+        GPIO.setmode(GPIO.BCM)
+        for p in FAN_PINS:
+            GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
+
+        GPIO.setup(PWM_PIN, GPIO.OUT)
+        self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )
 
         self.GPIO=GPIO
 	self.FAN_PINS=FAN_PINS
@@ -236,7 +235,7 @@ The available commands are:
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
 
-        #self.pwm.start(self.heat_level)
+        self.pwm.start(self.heat_level)
         self.pwm.ChangeDutyCycle(self.heat_level)
 
 
