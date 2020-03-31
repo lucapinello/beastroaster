@@ -232,7 +232,7 @@ The available commands are:
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
 
-        self.pwm.start(self.heat_level)
+        #self.pwm.start(self.heat_level)
         self.pwm.ChangeDutyCycle(self.heat_level)
 
 
