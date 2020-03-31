@@ -248,7 +248,8 @@ The available commands are:
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
-        self.GPIO.cleanup()
+        if self.GPIO.getmode()>-1:
+            self.GPIO.cleanup()
 
 
 if __name__ == '__main__':
