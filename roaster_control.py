@@ -215,8 +215,8 @@ The available commands are:
             print (self.FAN_PINS[idx],int(bit))
             GPIO.output(self.FAN_PINS[idx],int(bit))
 
-        self.pwm.start(self.heat_level)
-        self.pwm.ChangeDutyCycle(self.heat_level)
+        pwm.start(self.heat_level)
+        pwm.ChangeDutyCycle(self.heat_level)
 
 
     def set_fan(self):
