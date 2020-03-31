@@ -208,7 +208,7 @@ The available commands are:
         for p in self.FAN_PINS:
             GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
-        GPIO.setup(self.PWM_PIN, GPIO.OUT,initial = GPIO.LOW)
+        GPIO.setup(self.PWM_PIN, GPIO.OUT)
         pwm = GPIO.PWM(self.PWM_PIN,self.PWM_FQ )
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
