@@ -200,6 +200,8 @@ The available commands are:
             else:
                 _,self.name,self.heat_level,self.fan_level=roaster
 
+            self.pwm.start(self.heat_level)
+
         parser.add_argument('command', help='Subcommand to run')
         # parse_args defaults to [1:] for args, but you need to
         # exclude the rest of the args too, or validation will fail
