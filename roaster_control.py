@@ -15,8 +15,10 @@ def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60
 
     print('Updating heat:%d fan:%d' % (heat_level, fan_level))
 
-    pi.set_PWM_range(12, 100)
-    pi.set_PWM_dutycycle(12, heat_level)
+    pi.set_PWM_range(PWM_PIN, 100)
+    pi.set_PWM_frequency(PWM_FQ)
+    pi.set_PWM_dutycycle(PWM_PIN, heat_level)
+
 
     fan_control=[]
     for idx,bit in enumerate(list(np.binary_repr(15-fan_level,width=4))):
