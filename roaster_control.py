@@ -163,6 +163,7 @@ The available commands are:
 ''')
 
         #setting up the GPIO
+        print GPIO.getmode()
         if GPIO.getmode()==-1:
             GPIO.setmode(GPIO.BCM)
             for p in FAN_PINS:
