@@ -162,7 +162,6 @@ The available commands are:
 
 ''')
 
-
         self.FAN_PINS=FAN_PINS
         self.PWM_PIN=PWM_PIN
         self.PWM_FQ=PWM_FQ
@@ -190,7 +189,6 @@ The available commands are:
                 _,self.name,self.heat_level,self.fan_level=roaster
 
 
-
         parser.add_argument('command', help='Subcommand to run')
         # parse_args defaults to [1:] for args, but you need to
         # exclude the rest of the args too, or validation will fail
@@ -205,18 +203,24 @@ The available commands are:
     def update_gpio(self):
 
         GPIO.setmode(GPIO.BCM)
+
         for p in self.FAN_PINS:
             GPIO.setup(p, GPIO.OUT,initial = GPIO.HIGH)
 
         GPIO.setup(self.PWM_PIN, GPIO.OUT)
-        pwm = GPIO.PWM(self.PWM_PIN,self.PWM_FQ )
+
+
 
         for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
             print (self.FAN_PINS[idx],int(bit))
+            time.sleep(0.1)
             GPIO.output(self.FAN_PINS[idx],int(bit))
 
+        time.sleep(0.1)
+        pwm = GPIO.PWM(self.PWM_PIN,self.PWM_FQ )
         pwm.start(self.heat_level)
         pwm.ChangeDutyCycle(self.heat_level)
+        time.sleep(0.1)
 
 
     def set_fan(self):
