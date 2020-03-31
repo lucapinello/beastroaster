@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #Luca Pinello 2020
 
+from gpiozero import LED,PWMLED
 import argparse
 import sys
 import sqlite3
@@ -9,7 +10,21 @@ from sqlite3 import Error
 import numpy as np
 import time
 
-from gpiozero import LED,PWMLED
+
+def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60 ):
+
+    print('Updating heat:%d fan:%d' % (heat_level, fan_level)
+
+    heat_control=PWMLED(PWM_PIN)
+    heat_control.value=heat_level/100.0
+
+    fan_control=[]
+    for p in FAN_PINS:
+        fan_control.append(LED(p,initial_value=1))
+
+    for idx,bit in enumerate(list(np.binary_repr(15-fan_level,width=4))):
+        print (FAN_PINS[idx],int(bit))
+        fan_control[idx].value=int(bit)
 
 
 
@@ -146,7 +161,7 @@ def cool(conn):
 
 class Roaster(object):
 
-    def __init__(self,database_filename='roaster.db',FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60  ):
+    def __init__(self,database_filename='roaster.db' ):
         parser = argparse.ArgumentParser(
             description='Beast Roaster Control',
             usage='''roaster_control <command> [<args>]
@@ -165,10 +180,6 @@ The available commands are:
 
 
 ''')
-
-        self.FAN_PINS=FAN_PINS
-        self.PWM_PIN=PWM_PIN
-        self.PWM_FQ=PWM_FQ
 
         # create a database connection
         self.conn = create_connection(database_filename)
@@ -204,23 +215,7 @@ The available commands are:
         # use dispatch pattern to invoke method with same name
         getattr(self, args.command)()
 
-    def update_gpio(self):
 
-        print self.heat_level, self.fan_level
-
-
-        heat_control=PWMLED(self.PWM_PIN)
-        heat_control.value=self.heat_level/100.0
-
-        '''
-        fan_control=[]
-        for p in self.FAN_PINS:
-            fan_control.append(LED(p,initial_value=1))
-
-        for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
-            print (self.FAN_PINS[idx],int(bit))
-            fan_control[idx].value=int(bit)
-        '''
 
     def set_fan(self):
         parser = argparse.ArgumentParser(
@@ -230,8 +225,6 @@ The available commands are:
         print('New fan level %d' %args.new_fan_level)
         set_fan_level(self.conn,args.new_fan_level)
         self.fan_level=args.new_fan_level
-
-        self.update_gpio()
 
 
     def set_heat(self):
@@ -253,16 +246,15 @@ The available commands are:
     def cool(self):
     	parser = argparse.ArgumentParser(description='Cranking up fan to cool ')
         cool(self.conn)
-        self.update_gpio()
 
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
         self.heat_level=0
         self.fan_level=0
-        self.update_gpio()
 
 
 if __name__ == '__main__':
     roaster=Roaster()
+    update_gpio(roaster.heat_level, roaster.fan_level)
     roaster.conn.close()
