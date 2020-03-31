@@ -163,7 +163,9 @@ The available commands are:
 ''')
 
         #setting up the GPIO
-        print (GPIO.getmode() )
+
+        mode=GPIO.getmode()
+        print (mode)
 
         if GPIO.getmode() is None:
             GPIO.setmode(GPIO.BCM)
