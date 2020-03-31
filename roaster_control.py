@@ -160,6 +160,7 @@ The available commands are:
         GPIO.setup(PWM_PIN, GPIO.OUT)   # Declaring pin 21 as output pin
         self.pwm = GPIO.PWM(PWM_PIN,PWM_FQ )    # Created a PWM object
         self.GPIO=GPIO
+	self.FAN_PINS=FAN_PINS
 
         # create a database connection
         self.conn = create_connection(database_filename)
@@ -204,9 +205,9 @@ The available commands are:
         set_fan_level(self.conn,args.new_fan_level)
         self.fan_level=args.new_fan_level
 
-        for idx,bit in enumerate(list(np.binary_repr(15-fan_level,width=4))):
-            print (FAN_PINS[idx],int(bit))
-            GPIO.output(FAN_PINS[idx],int(bit))
+        for idx,bit in enumerate(list(np.binary_repr(15-self.fan_level,width=4))):
+            print (self.FAN_PINS[idx],int(bit))
+            self.GPIO.output(self.FAN_PINS[idx],int(bit))
 
 
     def set_heat(self):
@@ -218,8 +219,8 @@ The available commands are:
         set_heat_level(self.conn,args.new_heat_level)
         self.heat_level=args.new_heat_level
 
-        pwm.start(heat_level)
-        pwm.ChangeDutyCycle(heat_level)
+        self.pwm.start(self.heat_level)
+        self.pwm.ChangeDutyCycle(self.heat_level)
 
 
     def get_status(self):
@@ -228,13 +229,13 @@ The available commands are:
 
 
     def cool(self):
-            parser = argparse.ArgumentParser(description='Cranking up fan to cool ')
-
+    	parser = argparse.ArgumentParser(description='Cranking up fan to cool ')
+	cool(self.conn)
 
     def stop(self):
         parser = argparse.ArgumentParser(description='Stopping the roaster and cleaning up ')
         stop(self.conn)
-        GPIO.cleanup()
+        self.GPIO.cleanup()
 
 
 if __name__ == '__main__':
