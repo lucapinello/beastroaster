@@ -123,11 +123,15 @@ def update_roaster(conn, roaster):
     conn.commit()
 
 
-def set_fan_level(conn,new_fan_level,roaster_id=None):
+def set_fan_level(conn,new_fan_level,roaster_id=None,min_fan_level=3):
 
     if new_fan_level>=0 and new_fan_level<=15:
 
         roaster_id,name,heat_level,fan_level=get_roaster(conn)
+
+        if new_fan_level<min_fan_level:
+                heat_level=0
+
         update_roaster(conn,(name,heat_level,new_fan_level,roaster_id))
     else:
 
