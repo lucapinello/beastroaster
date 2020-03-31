@@ -149,6 +149,9 @@ class Roaster(object):
 
 
 --- B E A S T  Roaster Control ---
+
+Luca Pinello - 2020
+
 The available commands are:
    get_status  print the status of the roaster (fan and heat)
    set_fan     change fan level, values allowed are in [0-15]
@@ -156,7 +159,7 @@ The available commands are:
    cool        stop the heat and set the fan to maximum
    stop        stop fan and heat and reset the GPIO
 
-Luca Pinello - 2020
+
 ''')
 
         #setting up the GPIO
