@@ -10,6 +10,8 @@ from sqlite3 import Error
 import numpy as np
 import time
 
+_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 MIN_FAN_LEVEL=3
 
 
@@ -193,7 +195,7 @@ The available commands are:
 ''')
 
         # create a database connection
-        self.conn = create_connection(database_filename)
+        self.conn = create_connection(os.path.join(_ROOT,database_filename))
 
         # create tables
         if self.conn is not None:
