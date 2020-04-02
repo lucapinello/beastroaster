@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #Luca Pinello 2020
-
+import os
 import pigpio
 import argparse
 import sys
