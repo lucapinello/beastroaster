@@ -10,10 +10,17 @@ from sqlite3 import Error
 import numpy as np
 import time
 
+MIN_FAN_LEVEL=3
 
-def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60 ):
+
+def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60,min_fan_level=MIN_FAN_LEVEL ):
+
+    if fan_level<min_fan_level:
+        heat_level=0
+        print('fan too low, setting heat to 0!')
 
     print('Updating heat:%d fan:%d' % (heat_level, fan_level))
+
 
     pi.set_PWM_range(PWM_PIN, 100)
     pi.set_PWM_frequency(PWM_PIN,PWM_FQ)
@@ -125,7 +132,7 @@ def update_roaster(conn, roaster):
     conn.commit()
 
 
-def set_fan_level(conn,new_fan_level,roaster_id=None,min_fan_level=3):
+def set_fan_level(conn,new_fan_level,roaster_id=None,min_fan_level=MIN_FAN_LEVEL):
 
     if new_fan_level>=0 and new_fan_level<=15:
 
@@ -141,7 +148,7 @@ def set_fan_level(conn,new_fan_level,roaster_id=None,min_fan_level=3):
 
 
 
-def set_heat_level(conn,new_heat_level,roaster_id=None,min_fan_level=3):
+def set_heat_level(conn,new_heat_level,roaster_id=None,min_fan_level=MIN_FAN_LEVEL):
 
     roaster_id,name,heat_level,fan_level=get_roaster(conn)
 
@@ -229,6 +236,7 @@ The available commands are:
         print('New fan level %d' %args.new_fan_level)
         set_fan_level(self.conn,args.new_fan_level)
         self.fan_level=args.new_fan_level
+
 
 
     def set_heat(self):
