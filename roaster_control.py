@@ -195,6 +195,7 @@ The available commands are:
    set_heat    change heat level, values allowed are in [0-100]
    cool        stop the heat and set the fan to maximum
    stop        stop fan and heat and reset the GPIO
+   preheat     change fan and heat level at the same time to prehat the roaster
 
 
 ''')
