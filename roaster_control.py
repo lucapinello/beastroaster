@@ -12,7 +12,7 @@ import time
 
 _ROOT = os.path.abspath(os.path.dirname(__file__))
 
-MIN_FAN_LEVEL=3
+MIN_FAN_LEVEL=2
 
 
 def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60,min_fan_level=MIN_FAN_LEVEL ):
