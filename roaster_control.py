@@ -162,6 +162,11 @@ def set_heat_level(conn,new_heat_level,roaster_id=None,min_fan_level=MIN_FAN_LEV
     else:
         raise Exception("Heat level value must be in [0-100]")
 
+def set_heat_and_fan_levels(conn,new_heat_level,new_fan_level,roaster_id=None,min_fan_level=MIN_FAN_LEVEL):
+
+    set_fan_level(conn,new_fan_level,roaster_id,min_fan_level)
+    set_heat_level(conn,new_heat_level,roaster_id,min_fan_level)
+
 def stop(conn):
     roaster_id,name,heat_level,fan_level=get_roaster(conn)
     update_roaster(conn,(name,0,0,roaster_id))
@@ -239,8 +244,6 @@ The available commands are:
         set_fan_level(self.conn,args.new_fan_level)
         self.fan_level=args.new_fan_level
 
-
-
     def set_heat(self):
         parser = argparse.ArgumentParser(
             description='Change Heat Level')
@@ -251,11 +254,9 @@ The available commands are:
         self.heat_level=args.new_heat_level
 
 
-
     def get_status(self):
         parser = argparse.ArgumentParser(description='Get Roaster Status')
         print ("Fan level:%d Heat Level %d" %(self.fan_level,self.heat_level))
-
 
     def cool(self):
     	parser = argparse.ArgumentParser(description='Cranking up fan to cool ')
@@ -266,6 +267,16 @@ The available commands are:
         stop(self.conn)
         self.heat_level=0
         self.fan_level=0
+
+    def preheat(self):
+        parser = argparse.ArgumentParser(
+            description='Change Heat and Fan levels to prehat the roaster')
+        parser.add_argument('new_heat_level',type=int)
+        parser.add_argument('new_fan_level',type=int)
+        args = parser.parse_args(sys.argv[2:])
+        set_heat_and_fan_levels(self.conn,args.new_heat_level,args.new_fan_level)
+        self.heat_level=args.new_heat_level
+        self.fan_level=args.new_fan_level
 
 
 if __name__ == '__main__':
