@@ -31,7 +31,7 @@ def update_gpio(heat_level, fan_level,FAN_PINS=[26,19,13,6],PWM_PIN=12,PWM_FQ=60
 
     fan_control=[]
     for idx,bit in enumerate(list(np.binary_repr(15-fan_level,width=4))):
-        print (FAN_PINS[idx],int(bit))
+        #print (FAN_PINS[idx],int(bit))
         pi.write(FAN_PINS[idx], int(bit))
 
 
