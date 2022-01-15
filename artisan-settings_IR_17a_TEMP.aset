@@ -29,7 +29,7 @@ ETfunction=Y8
 ETlcd=true
 ExtraEventSamplingDelay=0
 Flavors=Acidity, Aftertaste, Clean Cup, Head, Fragrance, Sweetness, Aroma, Balance, Body
-Geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x2\0\0\0\0\0\0\0\0\0$\0\0\ak\0\0\x3\xff\0\0\0=\0\0\0\x8b\0\0\x4\xe2\0\0\x3/\0\0\0\0\x2\0\0\0\al)"
+Geometry="@ByteArray(\x1\xd9\xd0\xcb\0\x2\0\0\0\0\0\0\0\0\0$\0\0\ak\0\0\x3\xff\0\0\x3\x1e\0\0\x1\x34\0\0\x6=\0\0\x3{\0\0\0\0\x2\0\0\0\al)"
 KeepON=false
 LCDColors=@Variant(\0\0\0\b\0\0\0\b\0\0\0\n\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30\0\0\0\x4\0s\0v\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30\0\0\0 \0s\0l\0o\0w\0\x63\0o\0o\0l\0i\0n\0g\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x46\0\x38\0\x46\0\x38\0\x46\0\x38\0\0\0\xe\0r\0s\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x46\0\x38\0\x46\0\x38\0\x46\0\x38\0\0\0\x4\0\x65\0t\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30\0\0\0\xe\0\x64\0\x65\0l\0t\0\x61\0\x65\0t\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30\0\0\0\xe\0\x64\0\x65\0l\0t\0\x61\0\x62\0t\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30\0\0\0\x4\0\x62\0t\0\0\0\n\0\0\0\xe\0#\0\x66\0\x30\0\x66\0\x30\0\x66\0\x30)
 LEDColors=@Variant(\0\0\0\b\0\0\0\b\0\0\0\n\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x30\0\x30\0\x30\0\x30\0\x30\0\x30\0\0\0\x4\0s\0v\0\0\0\n\0\0\0\xe\0#\0\x34\0\x30\0\x34\0\x30\0\x34\0\x30\0\0\0 \0s\0l\0o\0w\0\x63\0o\0o\0l\0i\0n\0g\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x43\0\x43\0\x30\0\x44\0\x35\0\x30\0\0\0\xe\0r\0s\0t\0i\0m\0\x65\0r\0\0\0\n\0\0\0\xe\0#\0\x31\0\x38\0\x37\0\x41\0\x42\0\x33\0\0\0\x4\0\x65\0t\0\0\0\n\0\0\0\x6\0r\0\x65\0\x64\0\0\0\xe\0\x64\0\x65\0l\0t\0\x61\0\x65\0t\0\0\0\n\0\0\0\f\0o\0r\0\x61\0n\0g\0\x65\0\0\0\xe\0\x64\0\x65\0l\0t\0\x61\0\x62\0t\0\0\0\n\0\0\0\b\0\x62\0l\0u\0\x65\0\0\0\x4\0\x62\0t\0\0\0\n\0\0\0\xe\0#\0\x30\0\x30\0\x30\0\x30\0\x37\0\x46)
@@ -110,7 +110,7 @@ roastpropertiesAutoOpenFlag=0
 roastpropertiesflag=0
 segmentdeltathreshold=0.6
 segmentsamplesthreshold=3
-settingspath=/home/pi/beastroaster/artisan-settings_IR.aset
+settingspath=/home/pi/beastroaster/artisan-settings_IR_17a_TEMP.aset
 simulatorpath=None
 sound=0
 step100temp=@Invalid()
@@ -123,21 +123,21 @@ wheelpath=
 
 [Alarms]
 alarm_popup_timout=10
-alarmaction=4, 20, 6, 21
-alarmbeep=0, 0, 0, 0
-alarmcond=0, 0, 0, 0
-alarmflag=1, 1, 1, 1
-alarmguard=-1, -1, -1, -1
-alarmnegguard=-1, -1, -1, -1
-alarmoffset=0, 2, 5, 0
+alarmaction=4, 20, 6, 21, 4, 4, 4, 4, 4
+alarmbeep=0, 0, 0, 0, 0, 0, 0, 0, 0
+alarmcond=0, 0, 0, 0, 1, 1, 1, 1, 1
+alarmflag=1, 1, 1, 1, 1, 1, 1, 1, 1
+alarmguard=-1, -1, -1, -1, -1, -1, -1, -1, -1
+alarmnegguard=-1, -1, -1, -1, -1, -1, -1, -1, -1
+alarmoffset=0, 2, 5, 0, 5, 60, 120, 180, 3
 alarmsetlabel=
 alarmsets=@Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0), @Variant(\0\0\0\t\0\0\0\f\0\0\0\n\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0\0\0\0\t\0\0\0\0)
 alarmsfile=
-alarmsource=1, 1, 1, 1
-alarmstrings=100, , 0, 100
+alarmsource=1, 1, 1, 1, 1, 1, 1, 1, 1
+alarmstrings=100, , 0, 100, 95, 94, 93, 92, 95
 alarmtablecolumnwidths=100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100
-alarmtemperature=1000, 1000, 1000, 1000
-alarmtime=9, 6, 6, 6
+alarmtemperature=1000, 1000, 1000, 1000, 500, 500, 500, 500, 500
+alarmtime=9, 6, 6, 6, -1, 0, 0, 0, 0
 loadAlarmsFromBackground=false
 loadAlarmsFromProfile=false
 
@@ -171,9 +171,9 @@ loadRampSoakFromBackground=false
 loadRampSoakFromProfile=false
 pOnE=true
 pidCycle=1000
-pidKd=1.8
-pidKi=0.12
-pidKp=3.8
+pidKd=20
+pidKi=0.02
+pidKp=15
 pidNegativeTarget=0
 pidOnCHARGE=true
 pidPositiveTarget=4
@@ -218,7 +218,7 @@ zmin=-5
 batchcounter=-1
 batchprefix=
 batchsequence=1
-lastroastepoch=1613423671
+lastroastepoch=1621179853
 neverUpdateBatchCounter=0
 
 [Color]
@@ -288,8 +288,8 @@ extralinestyles1=-, -, -
 extralinestyles2=-, -, -
 extralinewidths1=1, 1, 1
 extralinewidths2=1, 1, 1
-extramarkers1=None, None, @Invalid()
-extramarkers2=None, None, @Invalid()
+extramarkers1=None, None, None
+extramarkers2=None, None, None
 extramarkersizes1=6, 6, 6
 extramarkersizes2=6, 6, 6
 
@@ -323,8 +323,8 @@ phidget1018_changeTriggers=10, 10, 10, 10, 10, 10, 10, 10
 phidget1018_dataRates=256, 256, 256, 256, 256, 256, 256, 256
 phidget1018_ratio=false, false, false, false, false, false, false, false
 phidget1045_async=true
-phidget1045_changeTrigger=0.02
-phidget1045_dataRate=32
+phidget1045_changeTrigger=0.1
+phidget1045_dataRate=128
 phidget1045_emissivity=1
 phidget1046_async=false, false, false, false
 phidget1046_dataRate=256
@@ -377,10 +377,10 @@ extraLCDvisibility2=true, false, false, false, true, true, true, true, true, tru
 extradevicecolor1=black, black, black
 extradevicecolor2=black, #ff0000, black
 extradevices=39, 22, 25
-extramathexpression1=, , -0.0016*Y2*Y2 + 1.9873*Y2 - 33.717
+extramathexpression1=, , 1.3288*Y2 + 10.426
 extramathexpression2=, , 0.0625*Y7[-15]+0.0625*Y7[-14]+0.0625*Y7[-13]+0.0625*Y7[-12]+0.0625*Y7[-11]+0.0625*Y7[-10]+0.0625*Y7[-9]+0.0625*Y7[-8]+0.0625*Y7[-7]+0.0625*Y7[-6]+0.0625*Y7[-5]+0.0625*Y7[-4]+0.0625*Y7[-3]+0.0625*Y7[-2]+0.0625*Y7[-1]+0.0625*Y7
 extraname1=, , Smo BT
-extraname2=BT(Probe), "Heat ", 
+extraname2=BT(Probe), "Heat ", BT(IR Sm)
 
 [ExtraEventButtons]
 buttonlistmaxlen=5
@@ -754,7 +754,7 @@ slideractions=4, 4, 0, 4
 slidercommands=Roaster_Set_Time {}, echo {}> /dev/shm/FAN && pigs p 21 {}, "if [[ $FAN>100 ]]; then pigs p 12 {};  pigs p 12 0; fi\n", /home/pi/beastroaster/set_heat.sh {}
 sliderfactors=1, 1, 1, 1
 slidermax=300, 150, 450, 100
-slidermin=0, 85, 120, 0
+slidermin=0, 60, 120, 0
 slideroffsets=0, 0, 0, 0
 slidervisibilities=0, 1, 0, 1
 
